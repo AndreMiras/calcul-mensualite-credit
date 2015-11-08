@@ -45,35 +45,41 @@
       <h2 class="baseline">Calcul mensualité crédit (taux fixe)</h2>
       <hr>
 
-      <form id="calculator_form">
-        <div class="form-group">
-          <label>Montant de l'emprunt</label>
-          <div class="input-group">
-            <input type="number" class="form-control" id="borrowed-capital">
-            <div class="input-group-addon">&euro;</div>
+      <form id="calculator-form">
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label>Montant de l'emprunt</label>
+            <div class="input-group">
+              <input type="number" class="form-control" id="borrowed-capital">
+              <div class="input-group-addon">&euro;</div>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label>Taux d'intéret annuel</label>
-          <div class="input-group">
-            <input type="number" step="0.1" class="form-control" id="interest-rate">
-            <div class="input-group-addon">%</div>
+          <div class="form-group col-md-4">
+            <label>Taux d'intéret annuel</label>
+            <div class="input-group">
+              <input type="number" step="0.1" class="form-control" id="interest-rate">
+              <div class="input-group-addon">%</div>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label>Durée</label>
-          <div class="input-group">
-            <input type="number" class="form-control" id="loan-duration">
-            <div class="input-group-addon">années</div>
+          <div class="form-group col-md-4">
+            <label>Durée</label>
+            <div class="input-group">
+              <input type="number" class="form-control" id="loan-duration">
+              <div class="input-group-addon">années</div>
+            </div>
           </div>
-        </div>
-        <!--
-        <button type="submit" class="btn btn-default">Submit</button>
-        -->
+          <div class="form-group col-xs-12">
+            <button type="submit" class="btn btn-default"><i class="fa fa-calculator"></i> Calculer</button>
+          </div>
+        </div> <!-- row -->
       </form>
-      <div>
-      <p><b>Montant de vos mensualités :</b> <span id="monthly-payments"></span></p>
-      <p><b>Coût du crédit :</b> <span id="loan-cost"></span></p>
+
+      <div class="panel panel-default">
+        <div class="panel-heading">Résultat</div>
+        <div class="panel-body">
+          <p><b>Montant de vos mensualités :</b> <span id="monthly-payments"></span></p>
+          <p><b>Coût du crédit :</b> <span id="loan-cost"></span></p>
+        </div>
       </div>
 
       <hr>

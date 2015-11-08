@@ -43,7 +43,7 @@ function on_form_updated() {
 }
 
 function bind_events() {
-  $( "#calculator_form input" ).change(function() {
+  $( "#calculator-form input" ).change(function() {
     on_form_updated();
   });
 }
