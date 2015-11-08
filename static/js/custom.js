@@ -4,23 +4,28 @@
  */
 function compute_monthly_payments(borrowed_capital, loan_duration, interest_rate) {
   //  (92000*0.017/12)/(1-(1/(pow((1+0.017/12), 15*12))))
-  monthly_payments =
+  var monthly_payments =
     (borrowed_capital * interest_rate / 12)
     /
     (1 - (1 / (Math.pow((1 + (interest_rate / 12)), loan_duration * 12))));
-  return monthly_payments;
+  var monthly_payments_rounded = parseFloat(monthly_payments.toFixed(2));
+  return monthly_payments_rounded;
 }
 
+/**
+ * Computes the rounded cost of the loan.
+ */
 function compute_loan_cost(borrowed_capital, loan_duration, monthly_payments) {
   var loan_cost = (loan_duration * monthly_payments * 12) - borrowed_capital;
-  return loan_cost;
+  var loan_cost_rounded = parseInt(loan_cost.toFixed(0), 10);
+  return loan_cost_rounded;
 }
 
 function update_result(monthly_payments, loan_cost) {
-  var monthly_payments_rounded = monthly_payments.toFixed(2);
-  var loan_cost_rounded = loan_cost.toFixed(0);
-  $("#monthly-payments").html(monthly_payments_rounded + "&euro;");
-  $("#loan-cost").html(loan_cost_rounded + "&euro;");
+  var monthly_payments_string = monthly_payments.toLocaleString() + "&euro;";
+  var loan_cost_string = loan_cost.toLocaleString() + "&euro;";
+  $("#monthly-payments").html(monthly_payments_string);
+  $("#loan-cost").html(loan_cost_string);
 }
 
 function on_form_updated() {
@@ -43,7 +48,22 @@ function bind_events() {
   });
 }
 
+/**
+ * Adds default input values.
+ * Let JavaScript picks up the correct floating point separator '.' or ','
+ * depending on browser locale settings.
+ */
+function load_input_defaults()
+{
+  $("#borrowed-capital").val(100000);
+  $("#loan-duration").val(15);
+  // picks-up the correct separator '.' or ',' depending on browser locale settings
+  $("#interest-rate").val(2.5);
+}
 
 $(function() {
   bind_events();
+  load_input_defaults();
+  // forces the first computation with default values
+  on_form_updated();
 });
